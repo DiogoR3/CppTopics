@@ -4,5 +4,4 @@
 int main() {
 	CppTopics::Menu menu;
 	menu.start();
-	menu.end();
 }
