@@ -4,8 +4,11 @@
 namespace CppTopics {
 	class Menu {
 	public:
+		Menu();
 		void start();
 		void end();
+	private:
+		bool exit;
 	};
 }
 
