@@ -13,6 +13,7 @@ namespace CppTopics {
 		void ShowMessageBox();
 		void DoBeep();
 		CPURAMInfo SystemInfo();
+		void OpenFileDialog();
 	};
 }
 

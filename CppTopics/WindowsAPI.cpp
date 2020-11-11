@@ -1,5 +1,7 @@
 #include <windows.h>
-#include <intrin.h>
+#include <intrin.h> // __cpuid
+#include <commdlg.h> // open file
+#include <iostream> // print file name
 #include "WindowsAPI.h"
 
 namespace CppTopics {
@@ -51,7 +53,7 @@ namespace CppTopics {
 
 		WindowsAPI::CPURAMInfo systemInfo;
 		strncpy_s(systemInfo.CPUBrand, CPUBrand, strlen(CPUBrand));
-		
+
 		SYSTEM_INFO sysInfo;
 		GetSystemInfo(&sysInfo);
 		systemInfo.Cores = sysInfo.dwNumberOfProcessors;
@@ -62,5 +64,29 @@ namespace CppTopics {
 		systemInfo.RAM = statex.ullTotalPhys / (1024 * 1024);
 
 		return systemInfo;
+	}
+
+	void WindowsAPI::OpenFileDialog() {
+		OPENFILENAME ofn;
+		SecureZeroMemory(&ofn, sizeof(ofn));
+		char f1[MAX_PATH];
+		f1[0] = 0;
+		ofn.lStructSize = sizeof(ofn);
+		ofn.lpstrTitle = L"Select A File";
+		ofn.lpstrFilter = L"Text Files\0*.txt\0All Files\0*.*\0\0";
+		ofn.nFilterIndex = 2;
+		ofn.lpstrFile = (LPWSTR)f1;
+		ofn.nMaxFile = MAX_PATH;
+		ofn.Flags = OFN_FILEMUSTEXIST;
+
+		if (GetOpenFileName(&ofn) != FALSE) {
+			std::cout << "Chosen file: ";
+			std::wcout << ofn.lpstrFile << std::endl;
+		}
+		else {
+			std::cout << "No file chosen!";
+		}
+
+		std::cout << std::endl;
 	}
 }

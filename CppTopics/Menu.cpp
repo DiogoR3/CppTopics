@@ -23,15 +23,16 @@ namespace CppTopics {
 			std::cout << "1 - Windows API - Message box" << jumpln;
 			std::cout << "2 - Windows API - Beep" << jumpln;
 			std::cout << "3 - Windows API - CPU/RAM Info" << jumpln;
-			std::cout << "4 - Exit" << jumpln;
+			std::cout << "4 - Windows API - Open file" << jumpln;
+			std::cout << "5 - Exit" << jumpln;
 			std::cout << jumpln;
 
 			std::cout << "Option: ";
 			std::getline(std::cin, userInput);
-			
+
 			if (userInput.length() != 1)
 				userInput[0] = 0;
-			 
+
 			switch (userInput[0]) {
 
 			case '1':
@@ -47,10 +48,14 @@ namespace CppTopics {
 				std::cout << "CPU: " << sysInfo.CPUBrand << jumpln;
 				std::cout << "Numer of cores: " << sysInfo.Cores << jumpln;
 				std::cout << "RAM: " << sysInfo.RAM << "MB" << jumpln;
-				std::cin.get();
 				break;
 			}
+
 			case '4':
+				winAPI.OpenFileDialog();
+				break;
+
+			case '5':
 				end();
 				break;
 
@@ -58,12 +63,13 @@ namespace CppTopics {
 				std::cout << "Invalid option selected!" << jumpln << jumpln;
 				break;
 			}
+
+			(void)std::getchar();
 		}
 	}
 
 	void Menu::end() {
 		std::cout << "Press any key to exit..." << jumpln;
 		exit = true;
-		(void)std::getchar();
 	}
 }
