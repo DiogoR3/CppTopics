@@ -22,7 +22,10 @@ namespace CppTopics {
 			std::cout << "Choose an option below:" << jumpln;
 			std::cout << "1 - Character Sequences" << jumpln;
 			std::cout << "2 - Pointers" << jumpln;
-			std::cout << "6 - Windows API - Message box" << jumpln;
+			std::cout << "3 - Dynamic Memory (nothrow)" << jumpln;
+			std::cout << "4 - Dynamic Memory (delete)" << jumpln;
+			std::cout << "5 - Throwing exception" << jumpln;
+			std::cout << "6 - Windows API - Show Message Box" << jumpln;
 			std::cout << "7 - Windows API - Beep" << jumpln;
 			std::cout << "8 - Windows API - CPU/RAM Info" << jumpln;
 			std::cout << "9 - Windows API - Open file" << jumpln;
@@ -56,15 +59,36 @@ namespace CppTopics {
 			}
 
 			case '3':
-
+				char* dynamicMemory;
+				dynamicMemory = new (std::nothrow) char[1'000'000];
+				if (dynamicMemory == nullptr) {
+					std::cout << "Could not create char[1'000'000]" << jumpln;
+				}
+				else {
+					std::cout << "char[1'000'000] created successfully" << jumpln;
+				}
 				break;
 
-			case '4':
+			case '4': {
+				int number;
+				std::cout << "How many numbers would you like to type? ";
+				std::cin >> number;
+				int* dynamicNumbers = new (std::nothrow) int[number];
 
-				break;
+				for (int n = 0; n < number; n++)
+				{
+					std::cout << "Enter number: ";
+					std::cin >> dynamicNumbers[n];
+				}
+				std::cout << "You have entered: ";
+				for (int n = 0; n < number; n++)
+					std::cout << dynamicNumbers[n] << ", ";
+				delete[] dynamicNumbers;
+				std::cout << jumpln;
+			}
 
 			case '5':
-
+				throw "This is a exception!";
 				break;
 
 			case '6':
