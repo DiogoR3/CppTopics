@@ -1,6 +1,5 @@
 #include <windows.h>
 #include <intrin.h> // __cpuid
-#include <commdlg.h> // open file
 #include <iostream> // print file name
 #include "WindowsAPI.h"
 

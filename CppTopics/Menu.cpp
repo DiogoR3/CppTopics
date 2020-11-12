@@ -20,11 +20,13 @@ namespace CppTopics {
 
 			std::cout << "**** CppTopics ****" << jumpln << jumpln;
 			std::cout << "Choose an option below:" << jumpln;
-			std::cout << "1 - Windows API - Message box" << jumpln;
-			std::cout << "2 - Windows API - Beep" << jumpln;
-			std::cout << "3 - Windows API - CPU/RAM Info" << jumpln;
-			std::cout << "4 - Windows API - Open file" << jumpln;
-			std::cout << "5 - Exit" << jumpln;
+			std::cout << "1 - Character Sequences" << jumpln;
+			std::cout << "2 - Pointers" << jumpln;
+			std::cout << "6 - Windows API - Message box" << jumpln;
+			std::cout << "7 - Windows API - Beep" << jumpln;
+			std::cout << "8 - Windows API - CPU/RAM Info" << jumpln;
+			std::cout << "9 - Windows API - Open file" << jumpln;
+			std::cout << "0 - Exit" << jumpln;
 			std::cout << jumpln;
 
 			std::cout << "Option: ";
@@ -35,15 +37,45 @@ namespace CppTopics {
 
 			switch (userInput[0]) {
 
-			case '1':
+			case '1': {
+				char charArray[] = { 'C', '+', '+', '\0' };
+				std::cout << "{ 'C', '+', '+', '\\0' } = " << charArray << jumpln;
+				char stringLiteral[] = "C++";
+				std::cout << "\"C++\" = " << stringLiteral << jumpln;
+				break;
+			}
+
+			case '2': {
+				double var = 10;
+				std::cout << "var = " << var << jumpln;
+
+				double* varptr = &var;
+				std::cout << "varptr = " << varptr << jumpln;
+				std::cout << "*(varptr) = " << *(varptr) << jumpln;
+				break;
+			}
+
+			case '3':
+
+				break;
+
+			case '4':
+
+				break;
+
+			case '5':
+
+				break;
+
+			case '6':
 				winAPI.ShowMessageBox();
 				break;
 
-			case '2':
+			case '7':
 				winAPI.DoBeep();
 				break;
 
-			case '3': {
+			case '8': {
 				auto sysInfo = winAPI.SystemInfo();
 				std::cout << "CPU: " << sysInfo.CPUBrand << jumpln;
 				std::cout << "Numer of cores: " << sysInfo.Cores << jumpln;
@@ -51,11 +83,11 @@ namespace CppTopics {
 				break;
 			}
 
-			case '4':
+			case '9':
 				winAPI.OpenFileDialog();
 				break;
 
-			case '5':
+			case '0':
 				end();
 				break;
 
