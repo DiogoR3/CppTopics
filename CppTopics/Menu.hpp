@@ -1,17 +1,19 @@
 #ifndef MENU_HEADER
 #define MENU_HEADER
 
+#include <string>
+
 namespace CppTopics
 {
 	class Menu
 	{
 	public:
-		Menu();
 		void start();
 		void end();
 
 	private:
-		bool exit;
+		void print(std::string &&str, bool jumpLine = true);
+		bool exit_{false};
 	};
 }
 

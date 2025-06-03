@@ -3,40 +3,30 @@
 #include <thread>
 #include "Menu.hpp"
 #include "WindowsAPI.hpp"
-#define jumpln std::endl
 
 namespace CppTopics
 {
-
-	Menu::Menu()
-	{
-		exit = false;
-	}
-
 	void Menu::start()
 	{
-
 		CppTopics::WindowsAPI winAPI;
 		std::string userInput;
 
-		while (!exit)
+		while (!exit_)
 		{
+			print("**** CppTopics ****");
+			print("Choose an option below:");
+			print("1 - Character Sequences");
+			print("2 - Pointers");
+			print("3 - Dynamic Memory (nothrow)");
+			print("4 - Dynamic Memory (delete)");
+			print("5 - Throwing exception");
+			print("6 - Windows API - Show Message Box");
+			print("7 - Windows API - Beep");
+			print("8 - Windows API - CPU/RAM Info");
+			print("9 - Windows API - Open file");
+			print("0 - Exit");
+			print("Option: ", false);
 
-			std::cout << "**** CppTopics ****" << jumpln << jumpln;
-			std::cout << "Choose an option below:" << jumpln;
-			std::cout << "1 - Character Sequences" << jumpln;
-			std::cout << "2 - Pointers" << jumpln;
-			std::cout << "3 - Dynamic Memory (nothrow)" << jumpln;
-			std::cout << "4 - Dynamic Memory (delete)" << jumpln;
-			std::cout << "5 - Throwing exception" << jumpln;
-			std::cout << "6 - Windows API - Show Message Box" << jumpln;
-			std::cout << "7 - Windows API - Beep" << jumpln;
-			std::cout << "8 - Windows API - CPU/RAM Info" << jumpln;
-			std::cout << "9 - Windows API - Open file" << jumpln;
-			std::cout << "0 - Exit" << jumpln;
-			std::cout << jumpln;
-
-			std::cout << "Option: ";
 			std::getline(std::cin, userInput);
 
 			if (userInput.length() != 1)
@@ -48,20 +38,20 @@ namespace CppTopics
 			case '1':
 			{
 				char charArray[] = {'C', '+', '+', '\0'};
-				std::cout << "{ 'C', '+', '+', '\\0' } = " << charArray << jumpln;
+				std::cout << "{ 'C', '+', '+', '\\0' } = " << charArray << std::endl;
 				char stringLiteral[] = "C++";
-				std::cout << "\"C++\" = " << stringLiteral << jumpln;
+				std::cout << "\"C++\" = " << stringLiteral << std::endl;
 				break;
 			}
 
 			case '2':
 			{
 				double var = 10;
-				std::cout << "var = " << var << jumpln;
+				std::cout << "var = " << var << std::endl;
 
 				double *varptr = &var;
-				std::cout << "varptr = " << varptr << jumpln;
-				std::cout << "*(varptr) = " << *(varptr) << jumpln;
+				std::cout << "varptr = " << varptr << std::endl;
+				std::cout << "*(varptr) = " << *(varptr) << std::endl;
 				break;
 			}
 
@@ -70,11 +60,11 @@ namespace CppTopics
 				dynamicMemory = new (std::nothrow) char[1'000'000];
 				if (dynamicMemory == nullptr)
 				{
-					std::cout << "Could not create char[1'000'000]" << jumpln;
+					std::cout << "Could not create char[1'000'000]" << std::endl;
 				}
 				else
 				{
-					std::cout << "char[1'000'000] created successfully" << jumpln;
+					std::cout << "char[1'000'000] created successfully" << std::endl;
 				}
 				break;
 
@@ -94,7 +84,7 @@ namespace CppTopics
 				for (int n = 0; n < number; n++)
 					std::cout << dynamicNumbers[n] << ", ";
 				delete[] dynamicNumbers;
-				std::cout << jumpln;
+				std::cout << std::endl;
 			}
 
 			case '5':
@@ -112,9 +102,9 @@ namespace CppTopics
 			case '8':
 			{
 				auto sysInfo = winAPI.SystemInfo();
-				std::cout << "CPU: " << sysInfo.CPUBrand << jumpln;
-				std::cout << "Numer of cores: " << sysInfo.Cores << jumpln;
-				std::cout << "RAM: " << sysInfo.RAM << "MB" << jumpln;
+				std::cout << "CPU: " << sysInfo.CPUBrand << std::endl;
+				std::cout << "Numer of cores: " << sysInfo.Cores << std::endl;
+				std::cout << "RAM: " << sysInfo.RAM << "MB" << std::endl;
 				break;
 			}
 
@@ -127,7 +117,8 @@ namespace CppTopics
 				break;
 
 			default:
-				std::cout << "Invalid option selected!" << jumpln << jumpln;
+				std::cout << "Invalid option selected!" << std::endl
+						  << std::endl;
 				break;
 			}
 
@@ -135,9 +126,16 @@ namespace CppTopics
 		}
 	}
 
+	void Menu::print(std::string &&str, bool jumpLine)
+	{
+		if (jumpLine)
+			str += "\n";
+		std::cout << str;
+	}
+
 	void Menu::end()
 	{
-		std::cout << "Press any key to exit..." << jumpln;
-		exit = true;
+		print("Press any key to exit...");
+		exit_ = true;
 	}
 }
