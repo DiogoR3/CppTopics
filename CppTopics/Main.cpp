@@ -1,7 +1,8 @@
 #include "Main.hpp"
 #include "Menu.hpp"
 
-int main() {
+int main()
+{
 	CppTopics::Menu menu;
 	menu.start();
 }

@@ -5,18 +5,22 @@
 #include "WindowsAPI.hpp"
 #define jumpln std::endl
 
-namespace CppTopics {
+namespace CppTopics
+{
 
-	Menu::Menu() {
+	Menu::Menu()
+	{
 		exit = false;
 	}
 
-	void Menu::start() {
+	void Menu::start()
+	{
 
 		CppTopics::WindowsAPI winAPI;
 		std::string userInput;
 
-		while (!exit) {
+		while (!exit)
+		{
 
 			std::cout << "**** CppTopics ****" << jumpln << jumpln;
 			std::cout << "Choose an option below:" << jumpln;
@@ -38,42 +42,48 @@ namespace CppTopics {
 			if (userInput.length() != 1)
 				userInput[0] = 0;
 
-			switch (userInput[0]) {
+			switch (userInput[0])
+			{
 
-			case '1': {
-				char charArray[] = { 'C', '+', '+', '\0' };
+			case '1':
+			{
+				char charArray[] = {'C', '+', '+', '\0'};
 				std::cout << "{ 'C', '+', '+', '\\0' } = " << charArray << jumpln;
 				char stringLiteral[] = "C++";
 				std::cout << "\"C++\" = " << stringLiteral << jumpln;
 				break;
 			}
 
-			case '2': {
+			case '2':
+			{
 				double var = 10;
 				std::cout << "var = " << var << jumpln;
 
-				double* varptr = &var;
+				double *varptr = &var;
 				std::cout << "varptr = " << varptr << jumpln;
 				std::cout << "*(varptr) = " << *(varptr) << jumpln;
 				break;
 			}
 
 			case '3':
-				char* dynamicMemory;
+				char *dynamicMemory;
 				dynamicMemory = new (std::nothrow) char[1'000'000];
-				if (dynamicMemory == nullptr) {
+				if (dynamicMemory == nullptr)
+				{
 					std::cout << "Could not create char[1'000'000]" << jumpln;
 				}
-				else {
+				else
+				{
 					std::cout << "char[1'000'000] created successfully" << jumpln;
 				}
 				break;
 
-			case '4': {
+			case '4':
+			{
 				int number;
 				std::cout << "How many numbers would you like to type? ";
 				std::cin >> number;
-				int* dynamicNumbers = new (std::nothrow) int[number];
+				int *dynamicNumbers = new (std::nothrow) int[number];
 
 				for (int n = 0; n < number; n++)
 				{
@@ -99,7 +109,8 @@ namespace CppTopics {
 				winAPI.DoBeep();
 				break;
 
-			case '8': {
+			case '8':
+			{
 				auto sysInfo = winAPI.SystemInfo();
 				std::cout << "CPU: " << sysInfo.CPUBrand << jumpln;
 				std::cout << "Numer of cores: " << sysInfo.Cores << jumpln;
@@ -124,7 +135,8 @@ namespace CppTopics {
 		}
 	}
 
-	void Menu::end() {
+	void Menu::end()
+	{
 		std::cout << "Press any key to exit..." << jumpln;
 		exit = true;
 	}

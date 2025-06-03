@@ -3,9 +3,11 @@
 #include <iostream> // print file name
 #include "WindowsAPI.hpp"
 
-namespace CppTopics {
+namespace CppTopics
+{
 
-	void WindowsAPI::ShowMessageBox() {
+	void WindowsAPI::ShowMessageBox()
+	{
 
 	messagebox:
 
@@ -13,8 +15,7 @@ namespace CppTopics {
 			NULL,
 			(LPCWSTR)L"This is a message box from windows.\nDo you want to show it again?",
 			(LPCWSTR)L"Message Example",
-			MB_ICONINFORMATION | MB_OKCANCEL | MB_DEFBUTTON2
-		);
+			MB_ICONINFORMATION | MB_OKCANCEL | MB_DEFBUTTON2);
 
 		switch (msgboxID)
 		{
@@ -27,15 +28,17 @@ namespace CppTopics {
 		}
 	}
 
-	void WindowsAPI::DoBeep() {
+	void WindowsAPI::DoBeep()
+	{
 		Beep(523, 500);
 		Sleep(300);
 	}
 
-	WindowsAPI::CPURAMInfo WindowsAPI::SystemInfo() {
-		int CPUInfo[4] = { -1 };
+	WindowsAPI::CPURAMInfo WindowsAPI::SystemInfo()
+	{
+		int CPUInfo[4] = {-1};
 		unsigned int nExIds, i = 0;
-		char CPUBrand[0x40] = { 0 };
+		char CPUBrand[0x40] = {0};
 
 		__cpuid(CPUInfo, 0x80000000);
 		nExIds = CPUInfo[0];
@@ -65,7 +68,8 @@ namespace CppTopics {
 		return systemInfo;
 	}
 
-	void WindowsAPI::OpenFileDialog() {
+	void WindowsAPI::OpenFileDialog()
+	{
 		OPENFILENAME ofn;
 		SecureZeroMemory(&ofn, sizeof(ofn));
 		char f1[MAX_PATH];
@@ -78,11 +82,13 @@ namespace CppTopics {
 		ofn.nMaxFile = MAX_PATH;
 		ofn.Flags = OFN_FILEMUSTEXIST;
 
-		if (GetOpenFileName(&ofn) != FALSE) {
+		if (GetOpenFileName(&ofn) != FALSE)
+		{
 			std::cout << "Chosen file: ";
 			std::wcout << ofn.lpstrFile << std::endl;
 		}
-		else {
+		else
+		{
 			std::cout << "No file chosen!";
 		}
 
