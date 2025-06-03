@@ -1,6 +1,4 @@
 #include <iostream>
-#include <string>
-#include <thread>
 #include "Menu.hpp"
 #include "WindowsAPI.hpp"
 
@@ -34,91 +32,85 @@ namespace CppTopics
 
 			switch (userInput[0])
 			{
-
 			case '1':
 			{
-				char charArray[] = {'C', '+', '+', '\0'};
-				std::cout << "{ 'C', '+', '+', '\\0' } = " << charArray << std::endl;
-				char stringLiteral[] = "C++";
-				std::cout << "\"C++\" = " << stringLiteral << std::endl;
+				const char charArray[] = {'C', '+', '+', '\0'};
+				print("{ 'C', '+', '+', '\\0' } = " + std::string(charArray));
+
+				const char stringLiteral[] = "C++";
+				print("\"C++\" = " + std::string(stringLiteral));
+
 				break;
 			}
-
 			case '2':
 			{
-				double var = 10;
-				std::cout << "var = " << var << std::endl;
+				const double number = 10;
+				print("number = " + std::to_string(number));
 
-				double *varptr = &var;
-				std::cout << "varptr = " << varptr << std::endl;
-				std::cout << "*(varptr) = " << *(varptr) << std::endl;
+				const double *pNumber = &number;
+				print("*pNumber = " + std::to_string(*pNumber));
 				break;
 			}
-
 			case '3':
-				char *dynamicMemory;
-				dynamicMemory = new (std::nothrow) char[1'000'000];
+			{
+				const char *dynamicMemory = new (std::nothrow) char[1'000'000];
 				if (dynamicMemory == nullptr)
 				{
-					std::cout << "Could not create char[1'000'000]" << std::endl;
+					print("Could not create char[1'000'000]");
 				}
 				else
 				{
-					std::cout << "char[1'000'000] created successfully" << std::endl;
+					print("char[1'000'000] created successfully");
+					delete[] dynamicMemory;
 				}
 				break;
-
+			}
 			case '4':
 			{
 				int number;
-				std::cout << "How many numbers would you like to type? ";
+				print("How many numbers would you like to type?");
 				std::cin >> number;
 				int *dynamicNumbers = new (std::nothrow) int[number];
 
 				for (int n = 0; n < number; n++)
 				{
-					std::cout << "Enter number: ";
+					print("Enter number: ");
 					std::cin >> dynamicNumbers[n];
 				}
-				std::cout << "You have entered: ";
+				print("You have entered: ");
 				for (int n = 0; n < number; n++)
-					std::cout << dynamicNumbers[n] << ", ";
-				delete[] dynamicNumbers;
-				std::cout << std::endl;
-			}
+					print(std::to_string(dynamicNumbers[n]) + ", ", false);
 
-			case '5':
-				throw "This is a exception!";
+				if (dynamicNumbers != nullptr)
+					delete[] dynamicNumbers;
+
 				break;
-
+			}
+			case '5':
+				throw "This is an exception!";
+				break;
 			case '6':
 				winAPI.ShowMessageBox();
 				break;
-
 			case '7':
 				winAPI.DoBeep();
 				break;
-
 			case '8':
 			{
-				auto sysInfo = winAPI.SystemInfo();
-				std::cout << "CPU: " << sysInfo.CPUBrand << std::endl;
-				std::cout << "Numer of cores: " << sysInfo.Cores << std::endl;
-				std::cout << "RAM: " << sysInfo.RAM << "MB" << std::endl;
+				const auto sysInfo = winAPI.SystemInfo();
+				print("CPU: " + std::string(sysInfo.CPUBrand));
+				print("Number of cores: " + std::to_string(sysInfo.Cores));
+				print("RAM: " + std::to_string(sysInfo.RAM) + "MB");
 				break;
 			}
-
 			case '9':
 				winAPI.OpenFileDialog();
 				break;
-
 			case '0':
 				end();
 				break;
-
 			default:
-				std::cout << "Invalid option selected!" << std::endl
-						  << std::endl;
+				print("Invalid option selected!");
 				break;
 			}
 
