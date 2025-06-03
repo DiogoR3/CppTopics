@@ -1,8 +1,8 @@
 #include <iostream>
 #include <string>
 #include <thread>
-#include "Menu.h"
-#include "WindowsAPI.h"
+#include "Menu.hpp"
+#include "WindowsAPI.hpp"
 #define jumpln std::endl
 
 namespace CppTopics {

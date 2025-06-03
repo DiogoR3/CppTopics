@@ -139,9 +139,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Main.h" />
-    <ClInclude Include="Menu.h" />
-    <ClInclude Include="WindowsAPI.h" />
+    <ClInclude Include="Main.hpp" />
+    <ClInclude Include="Menu.hpp" />
+    <ClInclude Include="WindowsAPI.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />

@@ -1,7 +1,7 @@
 #include <windows.h>
 #include <intrin.h> // __cpuid
 #include <iostream> // print file name
-#include "WindowsAPI.h"
+#include "WindowsAPI.hpp"
 
 namespace CppTopics {
 

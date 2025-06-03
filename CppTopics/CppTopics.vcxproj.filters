@@ -15,13 +15,13 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Main.h">
+    <ClInclude Include="Main.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="WindowsAPI.h">
+    <ClInclude Include="WindowsAPI.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Menu.h">
+    <ClInclude Include="Menu.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

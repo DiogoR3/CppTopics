@@ -1,5 +1,5 @@
-#include "Main.h"
-#include "Menu.h"
+#include "Main.hpp"
+#include "Menu.hpp"
 
 int main() {
 	CppTopics::Menu menu;
