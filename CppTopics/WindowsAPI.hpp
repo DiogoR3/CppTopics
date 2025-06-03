@@ -6,16 +6,20 @@ namespace CppTopics
 	class WindowsAPI
 	{
 	public:
+		WindowsAPI();
 		struct CPURAMInfo
 		{
 			char CPUBrand[64];
 			unsigned long Cores;
 			unsigned long long RAM;
 		};
-		void ShowMessageBox();
-		void DoBeep();
-		CPURAMInfo SystemInfo();
-		void OpenFileDialog();
+		void showMessageBox();
+		void doBeep();
+		CPURAMInfo systemInfo();
+		void openFileDialog();
+
+	private:
+		bool isWindows_{false};
 	};
 }
 

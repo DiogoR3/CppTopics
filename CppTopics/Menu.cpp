@@ -90,21 +90,25 @@ namespace CppTopics
 				throw "This is an exception!";
 				break;
 			case '6':
-				winAPI.ShowMessageBox();
+				winAPI.showMessageBox();
 				break;
 			case '7':
-				winAPI.DoBeep();
+				winAPI.doBeep();
 				break;
 			case '8':
 			{
-				const auto sysInfo = winAPI.SystemInfo();
-				print("CPU: " + std::string(sysInfo.CPUBrand));
-				print("Number of cores: " + std::to_string(sysInfo.Cores));
-				print("RAM: " + std::to_string(sysInfo.RAM) + "MB");
+				const auto sysInfo = winAPI.systemInfo();
+				if (sysInfo.Cores != 0)
+				{
+					print("CPU: " + std::string(sysInfo.CPUBrand));
+					print("Number of cores: " + std::to_string(sysInfo.Cores));
+					print("RAM: " + std::to_string(sysInfo.RAM) + "MB");
+				}
+
 				break;
 			}
 			case '9':
-				winAPI.OpenFileDialog();
+				winAPI.openFileDialog();
 				break;
 			case '0':
 				end();

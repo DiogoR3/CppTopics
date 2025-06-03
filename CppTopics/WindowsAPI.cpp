@@ -5,9 +5,20 @@
 
 namespace CppTopics
 {
-
-	void WindowsAPI::ShowMessageBox()
+	WindowsAPI::WindowsAPI()
 	{
+#ifdef _WIN32
+		isWindows_ = true;
+#endif
+	}
+
+	void WindowsAPI::showMessageBox()
+	{
+		if (!isWindows_)
+		{
+			std::cerr << "showMessageBox is only available on Windows." << std::endl;
+			return;
+		}
 
 	messagebox:
 
@@ -28,14 +39,26 @@ namespace CppTopics
 		}
 	}
 
-	void WindowsAPI::DoBeep()
+	void WindowsAPI::doBeep()
 	{
+		if (!isWindows_)
+		{
+			std::cerr << "doBeep is only available on Windows." << std::endl;
+			return;
+		}
+
 		Beep(523, 500);
 		Sleep(300);
 	}
 
-	WindowsAPI::CPURAMInfo WindowsAPI::SystemInfo()
+	WindowsAPI::CPURAMInfo WindowsAPI::systemInfo()
 	{
+		if (!isWindows_)
+		{
+			std::cerr << "systemInfo is only available on Windows." << std::endl;
+			return {};
+		}
+
 		int CPUInfo[4] = {-1};
 		unsigned int nExIds, i = 0;
 		char CPUBrand[0x40] = {0};
@@ -54,7 +77,8 @@ namespace CppTopics
 		}
 
 		WindowsAPI::CPURAMInfo systemInfo;
-		strncpy_s(systemInfo.CPUBrand, CPUBrand, strlen(CPUBrand));
+
+		std::copy(CPUBrand, CPUBrand + sizeof(CPUBrand), systemInfo.CPUBrand);
 
 		SYSTEM_INFO sysInfo;
 		GetSystemInfo(&sysInfo);
@@ -68,8 +92,14 @@ namespace CppTopics
 		return systemInfo;
 	}
 
-	void WindowsAPI::OpenFileDialog()
+	void WindowsAPI::openFileDialog()
 	{
+		if (!isWindows_)
+		{
+			std::cerr << "openFileDialog is only available on Windows." << std::endl;
+			return;
+		}
+
 		OPENFILENAME ofn;
 		SecureZeroMemory(&ofn, sizeof(ofn));
 		char f1[MAX_PATH];
